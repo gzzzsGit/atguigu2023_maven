@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gzzz</groupId>
+    <artifactId>maven_parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+<!--
+    聚合工程
+    父工程构建命令会引发所有子模块构建
+    module标签里写的是子工程的路径，而不是文件名
+-->
+        <module>maven_son</module>
+<!--        <module>../maven_A</module>-->
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+<!--  依赖管理，使得不会dependencies中的依赖不会直接无条件的被子工程继承，需要子工程在dependency中指定groupID和artifactId  -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>1.2.6</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 如果直接使用dependencied，外层没有包裹dependencyManagement，父工程的依赖会无条件的继承给子工程，无论scope是什么   -->
+<!--    <dependencies>-->
+<!--        <dependency>-->
+<!--            <groupId>com.alibaba</groupId>-->
+<!--            <artifactId>druid</artifactId>-->
+<!--            <version>1.2.6</version>-->
+<!--        </dependency>-->
+<!--    </dependencies>-->
+<!--    父工程用来统一管理项目中的依赖信息，不包含代码文件，所以的打包方式为pom，及不打包到压缩文件-->
+    <packaging>pom</packaging>
+</project>

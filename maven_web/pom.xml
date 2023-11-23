@@ -14,5 +14,61 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>5.9.2</junit.version>
     </properties>
+    <build>
+<!--        自定义打包名称，默认是artifactId-version.jar(war)-->
+        <finalName>maven_web-1.0</finalName>
+        <!-- jdk17 和 war包版本插件不匹配，需要做如下设置 -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
+            </plugin>
+            <!-- tomcat插件,能够直接使用maven下插件中的tomcat插件运行 -->
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8090</port>
+                    <path>/</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                    <server>tomcat7</server>
+                </configuration>
+            </plugin>
+        </plugins>
+        <!--设置要打包的资源位置-->
+        <resources>
+            <resource>
+                <!--设置资源所在目录-->
+                <directory>src/main/java</directory>
+                <includes>
+                    <!--设置包含的资源类型-->
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>com.gzzz</groupId>
+            <artifactId>maven_java</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+<!--            表示只对测试classpath有效-->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.8</version>
+<!--            缺省的scope就等于compile，表示在编译、测试、运行环境都能使用-->
+        </dependency>
+    </dependencies>
 </project>
