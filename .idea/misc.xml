@@ -8,6 +8,10 @@
         <option value="$PROJECT_DIR$/maven_web/pom.xml" />
         <option value="$PROJECT_DIR$/maven_web_plugin/pom.xml" />
         <option value="$PROJECT_DIR$/untitled/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_A/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_B/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_C/pom.xml" />
+        <option value="$PROJECT_DIR$/maven_parent/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
